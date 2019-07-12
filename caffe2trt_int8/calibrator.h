@@ -15,7 +15,7 @@
 #define CHECK_CUDA(status) \
   if(status != cudaSuccess) std::cout<<__LINE__<<" : "<<cudaGetErrorString(status)<<std::endl;
 
-class Calibrator : public nvinfer1::IInt8EntropyCalibrator
+class Calibrator : public nvinfer1::IInt8EntropyCalibrator2
 {
 public:
   Calibrator(

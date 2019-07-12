@@ -125,6 +125,7 @@ def Activation(txt_file, info):
 
 def Concat(txt_file, info):
   #for dense net for tensorrt
+  '''
   if "concat" in info['bottom'][0]:
     txt_file.write('layer {\n')
     txt_file.write('  bottom: "%s"\n'       % (info['bottom'][0]))
@@ -139,7 +140,7 @@ def Concat(txt_file, info):
     txt_file.write('  }\n')
     txt_file.write('}\n')
     txt_file.write('\n')
-
+  '''
   txt_file.write('layer {\n')
   txt_file.write('  name: "%s"\n'         % info['top'])
   txt_file.write('  type: "Concat"\n')
@@ -148,11 +149,10 @@ def Concat(txt_file, info):
       txt_file.write('  bottom: "%s"\n'     % bottom_i)
   else:
     if "concat" in info['bottom'][0]:
-      txt_file.write('  bottom: "%s"\n'     % (info['bottom'][0] + "_Copy"))
+      txt_file.write('  bottom: "%s"\n'     % (info['bottom'][0] + ""))
     else:
       txt_file.write('  bottom: "%s"\n'     % (info['bottom'][0]))
     txt_file.write('  bottom: "%s"\n'       % info['bottom'][1])
-
   txt_file.write('  top: "%s"\n'          % (info['top']))
   txt_file.write('}\n')
   txt_file.write('\n')
